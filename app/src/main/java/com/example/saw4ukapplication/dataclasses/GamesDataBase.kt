@@ -8,12 +8,15 @@ object GamesDataBase{
         Game(
             id = 1,
             title = "sfagsdgf",
-            description = "sdfewfwe",
+            short_description = "sdfewfwe",
             genre = "sqdfasdfas",
             platform = "sadfsadfwaef",
             publisher = "sdfasefas",
-            development = "sadfawerfwae",
-            releaseDate = "sdfasfesfaefse",
+            developer = "sadfawerfwae",
+            release_date = "sdfasfesfaefse",
+            freetogame_profile_url = "sdfsdf",
+            game_url = "sdfsdfsdf",
+            thumbnail = "Sdfsdfsdf"
             )
     )
 

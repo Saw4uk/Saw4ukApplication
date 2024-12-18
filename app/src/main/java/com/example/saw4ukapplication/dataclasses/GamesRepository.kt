@@ -1,5 +1,6 @@
 package com.example.saw4ukapplication.dataclasses
 
+import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Interceptor
@@ -30,7 +31,12 @@ object GamesRepository {
                     for ((name, value) in response.headers) {
                         println("$name: $value")
                     }
-                    val responseAnswer = response.body!!.string()
+                    val y = response.body!!.string().replace("[","").replace("]","")
+                    y.split("},{").forEach { z ->
+                        val responseAnswer = Json.decodeFromString<Game>("$z}")
+                        val x = responseAnswer
+                    }
+
                 }
             }
         })

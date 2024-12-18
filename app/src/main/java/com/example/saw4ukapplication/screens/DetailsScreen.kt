@@ -35,7 +35,7 @@ fun DetailsScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = "${game.title}", fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(text = "Описание: ${game.description}")
+                Text(text = "Описание: ${game.short_description}")
             }
         }
     }
