@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.saw4ukapplication.dataclasses.Game
 import com.example.saw4ukapplication.dataclasses.GamesDataBase
+import com.example.saw4ukapplication.dataclasses.GamesRepository
 
 class GameViewModel : ViewModel() {
     private val _games = MutableLiveData<List<Game>>()
@@ -20,6 +21,7 @@ class GameViewModel : ViewModel() {
 
     init {
         _games.value = GamesDataBase.games
+        val x = GamesRepository.get()
     }
 
     fun selectMovie(movie: Game) {
