@@ -11,7 +11,9 @@ import java.io.IOException
 
 object GamesRepository {
 
-    fun get() {
+    val games = mutableListOf<Game>()
+
+    init {
         val client = OkHttpClient()
 
         val request = Request.Builder()
@@ -31,10 +33,13 @@ object GamesRepository {
                     for ((name, value) in response.headers) {
                         println("$name: $value")
                     }
-                    val y = response.body!!.string().replace("[","").replace("]","")
+
+                    //Добил как смог, наверняка есть библиотеки, которые не заставляют так извиваться, но мне кажется этого достаточно
+                    val y = response.body!!.string().replace("[","").replace("]","").substring(1)
                     y.split("},{").forEach { z ->
-                        val responseAnswer = Json.decodeFromString<Game>("$z}")
-                        val x = responseAnswer
+                        games.add(Json.decodeFromString<Game>("{$z}"))
+                        if(games.count() == 20)
+                            return
                     }
 
                 }

@@ -10,6 +10,7 @@ import androidx.navigation.compose.*
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import com.example.saw4ukapplication.screens.GamesListScreen
@@ -73,8 +74,8 @@ fun BottomNavigationBar(navController: NavController) {
         )
 
         NavigationBarItem(
-            icon = { Icon(Icons.Filled.Info, contentDescription = "Информация") },
-            label = { Text("Информация") },
+            icon = { Icon(Icons.Filled.Create, contentDescription = "Поиск") },
+            label = { Text("Поиск") },
             selected = navController.currentDestination?.route == "searchScreen",
             onClick = {
                 navController.navigate("searchScreen")

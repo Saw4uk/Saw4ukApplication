@@ -20,8 +20,7 @@ class GameViewModel : ViewModel() {
     }
 
     init {
-        _games.value = GamesDataBase.games
-        val x = GamesRepository.get()
+        _games.value = GamesRepository.games
     }
 
     fun selectMovie(movie: Game) {
