@@ -1,9 +1,7 @@
 package com.example.saw4ukapplication.viewmodels
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.text.toLowerCase
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +11,6 @@ import com.example.saw4ukapplication.dataclasses.Game
 import com.example.saw4ukapplication.dataclasses.GamesRepository
 import com.example.saw4ukapplication.screens.dataStore
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -50,7 +47,6 @@ class GameViewModel(context: Context) : ViewModel() {
              }
 
          }
-
     }
 
     fun parsePlatformString(string: String) : String{
@@ -63,8 +59,8 @@ class GameViewModel(context: Context) : ViewModel() {
         return "&category=${string}";
     }
 
-    fun selectMovie(movie: Game) {
-        _chosedGame.value = movie
-        _chosedGameID.value = movie.id
+    fun selectGame(game: Game) {
+        _chosedGame.value = game
+        _chosedGameID.value = game.id
     }
 }

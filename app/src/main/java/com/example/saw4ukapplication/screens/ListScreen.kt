@@ -15,7 +15,6 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.saw4ukapplication.dataclasses.Game
 import com.example.saw4ukapplication.viewmodels.GameViewModel
@@ -50,7 +49,7 @@ fun GamesListItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                gameVM.selectMovie(game)
+                gameVM.selectGame(game)
                 navController.navigate("details/${game.id}")
             }
             .padding(4.dp)
