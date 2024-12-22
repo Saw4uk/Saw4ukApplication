@@ -1,5 +1,6 @@
 package com.example.saw4ukapplication.dataclasses
 
+import android.content.Context
 import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.Callback
@@ -12,11 +13,13 @@ object GamesRepository {
 
     val games = mutableListOf<Game>()
 
-    init {
+//
+
+    fun getGames(genreString: String, platformString: String){
         val client = OkHttpClient()
 
         val request = Request.Builder()
-            .url("https://www.freetogame.com/api/games")
+            .url("https://www.freetogame.com/api/games${platformString}${genreString}")
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -33,11 +36,12 @@ object GamesRepository {
                         println("$name: $value")
                     }
 
+                    games.clear()
                     //Добил как смог, наверняка есть библиотеки, которые не заставляют так извиваться, но мне кажется этого достаточно
                     val y = response.body!!.string().replace("[","").replace("]","").substring(1)
                     y.split("},{").forEach { z ->
                         games.add(Json.decodeFromString<Game>("{$z}"))
-                        if(games.count() == 20)
+                        if(games.count() >= 20)
                             return
                     }
 

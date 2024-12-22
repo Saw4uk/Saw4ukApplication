@@ -1,5 +1,6 @@
 package com.example.saw4ukapplication.screens
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,7 +23,8 @@ import com.example.saw4ukapplication.viewmodels.GameViewModel
 @Composable
 fun GamesListScreen(
     navController: NavController,
-    gameViewModel: GameViewModel = viewModel())
+    context: Context,
+    gameViewModel: GameViewModel)
 {
     val games = gameViewModel.games.value ?: emptyList()
 
@@ -68,6 +70,16 @@ fun GamesListItem(
                 text = game.thumbnail,
                 fontSize = 10.sp,
                 fontStyle = FontStyle.Italic
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "Жанр: ${game.genre}",
+                fontSize = 10.sp,
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "Платформа: ${game.platform}",
+                fontSize = 10.sp,
             )
         }
     }

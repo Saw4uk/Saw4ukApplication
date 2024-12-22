@@ -1,5 +1,6 @@
 package com.example.saw4ukapplication
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,30 +18,33 @@ import com.example.saw4ukapplication.screens.GamesListScreen
 import com.example.saw4ukapplication.screens.DetailsScreen
 import com.example.saw4ukapplication.screens.SearchScreen
 import com.example.saw4ukapplication.viewmodels.GameViewModel
+import com.example.saw4ukapplication.viewmodels.SaveViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MovieApp()
+            val saveVM = SaveViewModel(baseContext)
+            val listVm = GameViewModel(baseContext)
+            MovieApp(baseContext,saveVM,listVm)
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MovieApp() {
+fun MovieApp(context: Context, saveViewModel: SaveViewModel, gameViewModel: GameViewModel) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) }
     ) { padding ->
         NavHost(navController, startDestination = "gamesList", Modifier.padding(padding)) {
-            composable("gamesList") { GamesListScreen(navController) }
+            composable("gamesList") { GamesListScreen(navController, context, gameViewModel) }
             composable("details/{gameId}") { backStackEntry ->
                 val gameId = backStackEntry.arguments?.getString("gameId")?.toInt() ?: 1
                 DetailsScreen(gameId, navController)
             }
-            composable("searchScreen") { SearchScreen() }
+            composable("searchScreen") { SearchScreen(saveViewModel) }
         }
     }
 }
